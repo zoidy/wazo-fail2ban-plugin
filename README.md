@@ -12,7 +12,7 @@ Frontend (vuejs) and backend (fastapi). FastAPI reads it's data from the socket 
 
 Clone rep, install docker and docker-compose.
 ```bash
-$ git clone https://github.com/sboily/wazo-fail2ban-plugin
+git clone https://github.com/sboily/wazo-fail2ban-plugin
 ```
 
 To build the image
