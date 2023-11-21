@@ -96,7 +96,8 @@ export default {
   },
   methods: {
     getJails () {
-      axios.get('http://127.0.0.1:8000/jail/' + this.jail_name)
+      const url = `${window.location.protocol}//${window.location.hostname}/api/jail/${this.jail_name}`;
+      axios.get(url)
         .then((resp) => {
           this.jail_data = resp.data
           for (let key in resp.data) {
@@ -109,7 +110,6 @@ export default {
     },
     refreshData() {
       this.getJails()
-      axios.get('http://127.0.0.1:8000/refresh')
     },
     ValidateIPaddress(ipaddress) {
       if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress))
@@ -121,7 +121,8 @@ export default {
       if (this.banningIP) {
         if (validIP) {
           // POST ban
-          axios.post('http://127.0.0.1:8000/ban', {
+          const url = `${window.location.protocol}//${window.location.hostname}/api/ban`;
+          axios.post(url, {
               'ip': this.banningIP,
               'jail': this.jail_name,
             })
@@ -161,7 +162,8 @@ export default {
       this.$delete(this.banlist, index);
       console.log(this.banlist)
       // POST unban
-      axios.post('http://127.0.0.1:8000/unban', {
+      const url = `${window.location.protocol}//${window.location.hostname}/api/unban`;
+      axios.post(url, {
           'ip': ip,
           'jail': this.jail_name,
         })
