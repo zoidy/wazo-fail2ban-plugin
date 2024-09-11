@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     getJails () {
-      const url = `${window.location.protocol}//${window.location.hostname}/api/jails`;
+      const url = `${window.location.protocol}//${window.location.host}/api/jails`;
       axios.get(url)
         .then((resp) => {
           this.apistatus = true
