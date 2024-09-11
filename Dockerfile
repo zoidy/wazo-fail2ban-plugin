@@ -1,4 +1,4 @@
-FROM node:16-alpine AS compile-image
+FROM node:22-alpine AS compile-image
 LABEL maintainer="Sylvain BOILY <sylvain@wazo.io>"
 
 WORKDIR /src
