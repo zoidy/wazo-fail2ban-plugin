@@ -1,7 +1,7 @@
 certifi
 chardet
 dataclasses
-fastapi==0.104.1
+fastapi==0.114.1
 h11
 httptools
 idna
