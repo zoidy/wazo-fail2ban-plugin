@@ -1,3 +1,5 @@
+This fork fixes an issue when running the web frontend to include the port number in the API request URL. It also updates some dependencies to the later versions (not the latest since substantial code changes would be needed to update them to the latest) 
+
 Fail2ban for Wazo
 ----------
   
@@ -12,7 +14,7 @@ Frontend (vuejs) and backend (fastapi). FastAPI retrieves its data from the sock
 
 Clone rep, install docker and docker-compose.
 ```bash
-git clone https://github.com/sboily/wazo-fail2ban-plugin
+git clone https://github.com/zoidy/wazo-fail2ban-plugin
 ```
 
 To build the image
