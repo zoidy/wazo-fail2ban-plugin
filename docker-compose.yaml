@@ -1,14 +1,22 @@
 services:
   backend:
     container_name: wazo-fail2ban-backend
-    image: "wazo-fail2ban-backend"
+    image: wazo-fail2ban-backend:latest
+    pull_policy: never
+    # If running this in a stack with fail2ban, uncomment to delay starting the backend until fail2ban has started. lscr.io/linuxserver/fail2ban:latest is recommended
+    # entrypoint: [ "bash", "-c", "sleep 10 && python3 ./main.py"]
     restart: unless-stopped
     volumes:
-      - /var/run/fail2ban/fail2ban.sock:/var/run/fail2ban/fail2ban.sock
+      - f2bsock-volume:/var/run/fail2ban
 
   frontend:
     container_name: wazo-fail2ban-frontend
-    image: "wazo-fail2ban-frontend"
+    image: wazo-fail2ban-frontend:latest
+    pull_policy: never
     restart: unless-stopped
     ports:
       - "8990:80"
+
+# If running this in a stack with fail2ban, mount this volume in the fail2ban container with the location of fail2ban.sock. E.g., f2bsock-volume:/var/run/fail2ban
+volumes:
+   f2bsock-volume:
