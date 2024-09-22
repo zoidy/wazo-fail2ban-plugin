@@ -1,4 +1,8 @@
-This fork fixes an issue when running the web frontend to include the port number in the API request URL. It also updates some dependencies to the later versions (not the latest since substantial code changes would be needed to update them to the latest) 
+This fork 
+
+- Fixes an issue when running the web frontend to include the port number in the API request URL.
+- Shows the ban time for each banned ip
+- Updates some dependencies to the later versions (not the latest since substantial code changes would be needed to update them to the latest) 
 
 Fail2ban for Wazo
 ----------
