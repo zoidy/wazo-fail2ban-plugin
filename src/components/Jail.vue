@@ -36,7 +36,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Current fails</h5>
-          <h1 class="text-center">{{data.fails_current}}</h1>
+          <h1 class="text-center">{{data.fail_current}}</h1>
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Total fails</h5>
-          <h1 class="text-center">{{data.fails_total}}</h1>
+          <h1 class="text-center">{{data.fail_total}}</h1>
         </div>
       </div>
     </div>
@@ -55,6 +55,7 @@
       <div class="mt-2">
         <div v-for="(ip, index) in filterIPs" class="delObjects p-1 m-1">
             {{ip}} <a href="#" v-on:click.prevent="deleteObject(ip, index)">&times;</a>
+			<div class="banDetails">For {{ipDetails(ip)['ban_time']}}, ends {{ipDetails(ip)['end_date']}}</div>
         </div>
       </div>
     </div>
@@ -83,6 +84,7 @@ export default {
       jail_data: "",
       jail_name: this.$route.params.jailname,
       banlist: "",
+      bandetails: "",
       search: "",
       banningIP: "",
       banStatus: ""
@@ -102,6 +104,7 @@ export default {
           this.jail_data = resp.data
           for (let key in resp.data) {
               this.banlist = resp.data[key].bans_iplist
+			  this.bandetails = resp.data[key].bans_bandetails
             }
         })
         .catch((err) => {
@@ -183,6 +186,9 @@ export default {
         type: 'success'
       });      
     },
+	ipDetails: function(ip) {
+		return this.bandetails[ip]
+	},
   },
   computed: {
     filterIPs: function() {
@@ -193,7 +199,7 @@ export default {
         );
       }
       return filtered;
-    },     
+    },
   }
 }
 </script>

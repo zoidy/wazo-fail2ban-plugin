@@ -63,7 +63,11 @@ ul ul a {
 .delObjects:hover {
     background-color:#FFF;
     border:1px solid #999;
+}
 
+.banDetails {
+    font-size: x-small;
+    color: grey;
 }
 
 .logPath {

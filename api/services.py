@@ -10,6 +10,11 @@ def get_jaildata(jail):
     data['bans_total'] = detail['actions']['total_banned']
     data['log_file'] = detail['filter']['file_list']
     data['bans_iplist'] = detail['actions']['banned_ip_list']
+    
+    f = send_cmd(f"get {jail} banip --with-time")
+    detail = f['details']
+    data['bans_bandetails'] = detail
+    
     return(data)
 
 def summary(obj_jails, jailnums):
@@ -39,7 +44,8 @@ def main():
             "bans_current": jail_data['bans_current'],
             "bans_total": jail_data['bans_total'],
             "log_file": jail_data['log_file'],
-            "bans_iplist": jail_data['bans_iplist']
+            "bans_iplist": jail_data['bans_iplist'],
+            "bans_details": jail_data['bans_bandetails']
         }
     data = summary(obj_jails, jailnums)
     return(data)
@@ -51,16 +57,7 @@ def get_jail(jail):
         obj_jail = {
             jail: {}
         }
-        f = send_cmd(f"status {jail}")
-        detail = f['details']
-        obj_jail[jail] = {
-            "fails_current": detail['filter']['currently_failed'],
-            "fails_total": detail['filter']['total_failed'],
-            "bans_current": detail['actions']['currently_banned'],
-            "bans_total": detail['actions']['total_banned'],
-            "log_file": detail['filter']['file_list'],
-            "bans_iplist": detail['actions']['banned_ip_list']
-        }
+        obj_jail[jail] = get_jaildata(jail)
         return(obj_jail)
     else:
         return {"error": 404, "msg": "Jail name '{}' not found".format(jail)}

@@ -8,7 +8,7 @@ setup(
     version="0.1",
     description="Backend to control fail2ban",
     author="Sylvain Boily",
-    url="https://github.com/sboily/wazo-fail2ban-plugin",
+    url="https://github.com/zoidy/wazo-fail2ban-plugin",
 
     packages=find_packages(),
     include_package_data=True
